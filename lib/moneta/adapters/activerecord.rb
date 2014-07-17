@@ -101,7 +101,7 @@ module Moneta
       # (see Proxy#store)
       def store(key, value, options = {})
         @table.connection_pool.with_connection do
-          record = @table.select(:k).where(k: key).first_or_initialize
+          record = @table.select(:k).where(k: key).first || @table.new(k: key)
           record.v = value
           record.save
           value
