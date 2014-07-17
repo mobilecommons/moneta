@@ -48,6 +48,7 @@ module Moneta
           const_set(name, table)
           table.table_name = options[:table] || 'moneta'
           table.primary_key = :k
+          table.attr_accessible :k
 
           if options[:connection]
             begin
