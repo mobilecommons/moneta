@@ -48,7 +48,6 @@ module Moneta
           const_set(name, table)
           table.table_name = options[:table] || 'moneta'
           table.primary_key = :k
-          table.attr_accessible :k
 
           if options[:connection]
             begin
@@ -102,7 +101,7 @@ module Moneta
       # (see Proxy#store)
       def store(key, value, options = {})
         @table.connection_pool.with_connection do
-          record = @table.select(:k).where(k: key).first || @table.new(k: key)
+          record = @table.select(:k).where(k: key).first || @table.new.tap{|r|r.k=key}
           record.v = value
           record.save
           value
