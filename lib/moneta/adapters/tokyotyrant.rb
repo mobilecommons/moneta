@@ -57,7 +57,7 @@ module Moneta
 
       # (see Proxy#store)
       def store(key, value, options = {})
-        @backend.put(key, f) or raise error_message
+        @backend.put(key, pack(value)) or raise error_message
         value
       end
 
