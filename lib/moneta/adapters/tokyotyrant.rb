@@ -125,7 +125,7 @@ module Moneta
       end
 
       def error_message
-        error_message
+        "#{@backend.class.name} error: #{@backend.errmsg}"
       end
     end
   end
