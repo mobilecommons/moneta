@@ -27,7 +27,7 @@ module Moneta
       def initialize(options = {})
         options[:host]     ||= '127.0.0.1'
         options[:port]     ||= 1978
-        options[:use_pack] ||= true
+        options[:use_pack] = true if !options.key?(:use_pack)
         if options[:backend]
           @backend = options[:backend]
         elsif defined?(::TokyoTyrant::RDB)
