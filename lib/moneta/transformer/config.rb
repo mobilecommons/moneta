@@ -8,6 +8,7 @@ module Moneta
       bson:     [ :serialize, "::BSON.deserialize(%s)['v']",  "::BSON.serialize('v'=>%s).to_s",  'bson'          ],
       json:     [ :serialize, '::MultiJson.load(%s)',         '::MultiJson.dump(%s)',            'multi_json'    ],
       marshal:  [ :serialize, '::Marshal.load(%s)',           '::Marshal.dump(%s)'                               ],
+      marshal_with_fallback:  [ :serialize, '::Marshal.load(%s) rescue %s',  '::Marshal.dump(%s)'                ],
       msgpack:  [ :serialize, '::MessagePack.unpack(%s)',     '::MessagePack.pack(%s)',          'msgpack'       ],
       ox:       [ :serialize, '::Ox.parse_obj(%s)',           '::Ox.dump(%s)',                   'ox'            ],
       php:      [ :serialize, '::PHP.unserialize(%s)',        '::PHP.serialize(%s)',           'php_serialize' ],
